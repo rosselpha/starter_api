@@ -35,12 +35,12 @@ app.use(passport.session())
 app.use('/api', authRoutes)
 app.use('/api', contestRoutes)
 
-app.get('/', (req, res) => {
-    res.json({ hello: "hello" })
-})
+// app.get('*', (req, res) => {
+//     res.json({ hello: "hello" })
+// })
 
 app.use((req, res, next)=> {
-  res.status(404).json({'page': "not found"})
+  res.status(404).json({'page': "not found u know"}) 
 })
 
 mongoose

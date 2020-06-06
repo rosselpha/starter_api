@@ -19,7 +19,7 @@ passport.use(new GoogleStrategy({
     clientID:
     "378721129607-gnqp5scdcvrloc8a9j2toa7ekb4manak.apps.googleusercontent.com",
   clientSecret: "VhLF7b-cXEbNuDjusmAn7vfY",
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/api/user/'
 }, (acesstoken,refreshToken, profile, done) => {
     
     User.findOne({googleId: profile.id})
