@@ -43,6 +43,7 @@
         res.json({"id":req.params._id})
     })
 
+
     router.post('/pool', async(req, res, next) =>{
 
         const pool =  new Pool({
@@ -53,6 +54,25 @@
         await pool.save().then( pool => {
             res.send(pool)
         }).catch(err => {
+            res.send(err)
+        })
+    })
+    router.get('/pool', async (req, res, next)=>{
+        let pool = await Pool.find()
+        res.json({'pool': pool})
+    })
+
+    router.get('/pool/:_id', async (req, res, next)=>{
+        let id = req.params._id
+        Pool.findById(id).then(poolid =>{
+            if(!poolid) {
+                const error =  new Error('could not find pool')
+                error.statusCode = 404
+                throw error
+            }
+            res.json(({'pool':poolid}))
+
+        }).catch( err => {
             res.send(err)
         })
     })
@@ -71,8 +91,6 @@
             pool.save()
             res.send('save')
 
-        }).catch( err => {
-            res.send(err)
         })
         
         
